@@ -1,4 +1,4 @@
-<img width="1919" height="1018" alt="image" src="https://github.com/user-attachments/assets/a55ffb5f-e641-4964-8046-81c739f8b098" /># 🐦 Tweet-sentiment-analyzer
+# 🐦 Tweet-sentiment-analyzer
 Tweet Sentiment Analyzer is an NLP + ML project that predicts whether a tweet is Positive, Negative, or Neutral using Logistic Regression. It features text preprocessing, TF-IDF vectorization, and a Flask web app for real-time sentiment analysis..
 
 
