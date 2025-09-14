@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tweet Sentiment Analyzer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-100 min-h-screen flex items-center justify-center">
+
+  <div class="bg-white shadow-xl rounded-2xl w-full max-w-xl p-8">
+
+    <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">
+      Tweet Sentiment Analyzer
+    </h1>
+    
+
+    <form action="/predict" method="POST" class="space-y-4">
+      <textarea name="tweet" placeholder="Write a tweet here..." rows="3"
+        class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+      
+      <button type="submit"
+        class="w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600 transition">
+        Analyze
+      </button>
+    </form>
+
+
+    {% if prediction_text %}
+      <div class="mt-8">
+  
+        <div class="bg-gray-50 border rounded-xl p-4 shadow-sm">
+          <div class="flex items-center space-x-3 mb-3">
+            <img src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png" 
+                 alt="User Avatar" class="w-10 h-10 rounded-full">
+            <div>
+              <p class="font-bold text-gray-800">User</p>
+              <p class="text-sm text-gray-500">@user_name</p>
+            </div>
+          </div>
+          <p class="text-gray-700 text-lg leading-relaxed">
+            {{ request.form['tweet'] }}
+          </p>
+        </div>
+
+
+        <div class="mt-4 text-center">
+          {% if 'Positive' in prediction_text %}
+            <span class="inline-flex items-center px-4 py-2 rounded-full bg-green-100 text-green-700 text-lg font-semibold shadow">
+              😊 Positive
+            </span>
+          {% elif 'Negative' in prediction_text %}
+            <span class="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-700 text-lg font-semibold shadow">
+              😞 Negative
+            </span>
+          {% elif 'Neutral' in prediction_text %}
+            <span class="inline-flex items-center px-4 py-2 rounded-full bg-yellow-100 text-yellow-700 text-lg font-semibold shadow">
+              😐 Neutral
+            </span>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+</body>
+</html>
